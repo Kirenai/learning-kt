@@ -1,22 +1,38 @@
 package me.kire.re
 
-import java.util.Scanner
-import kotlin.random.Random
+import me.kire.re.enums.Color
+import me.kire.re.enums.Direction
+import me.kire.re.enums.IntArithmetics
+import me.kire.re.enums.ProtocolState
+import me.kire.re.enums.RGB
+import me.kire.re.enums.printAllValues
+import kotlin.enums.enumEntries
 
 fun main() {
-    val scanner = Scanner(System.`in`)
-    val randomValue = Random.nextInt(0, 100)
+    val direction = Direction.EAST
+    println("Direction: $direction")
 
-    while (true) {
-        print("Guess a number between 0 and 100: ")
-        val guess = scanner.nextInt()
-        if (guess == randomValue) {
-            println("You guessed it!")
-            break
-        } else if (guess < randomValue) {
-            println("Too low!")
-        } else {
-            println("Too high!")
-        }
-    }
+    val color = Color.RED
+    println("Color: $color")
+
+    val protocolState = ProtocolState.WAITING
+    println("Initial Protocol State: $protocolState")
+    val signal = protocolState.signal()
+    println("After signal: $signal")
+
+    val plus = IntArithmetics.PLUS
+    val result = plus.applyAsInt( 10, 5)
+    println("IntArithmetics PLUS result: $result")
+
+    val times = IntArithmetics.TIMES
+    val timesResult = times.applyAsInt( 10, 5)
+    println("IntArithmetics TIMES result: $timesResult")
+
+    for(color in RGB.entries) println(color)
+    println("The first color is: ${RGB.valueOf("RED")}")
+
+    val enumEntries = enumEntries<RGB>()
+    println("Enum entries: $enumEntries")
+
+    printAllValues<RGB>()
 }
